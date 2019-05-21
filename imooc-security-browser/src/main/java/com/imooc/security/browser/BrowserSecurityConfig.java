@@ -29,7 +29,7 @@ import com.imooc.security.core.validate.code.ValidateCodeSecurityConfig;
  *
  */
 @Configuration
-public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
+public class BrowserSecurityConfig extends AbstractChannelSecurityConfig { //AbstractChannelSecurityConfig继承自WebSecurityConfigurerAdapter
 
 	@Autowired
 	private SecurityProperties securityProperties;
@@ -57,7 +57,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
+		//表单登陆验证
 		applyPasswordAuthenticationConfig(http);
 		
 		http.apply(validateCodeSecurityConfig)

@@ -30,7 +30,7 @@ import com.imooc.dto.FileInfo;
 @RequestMapping("/file")
 public class FileController {
 
-	private String folder = "/Users/zhailiang/Documents/my/muke/inaction/java/workspace/github/imooc-security-demo/src/main/java/com/imooc/web/controller";
+	private String folder = "/Users/jolin/Downloads/";
 
 	@PostMapping
 	public FileInfo upload(MultipartFile file) throws Exception {

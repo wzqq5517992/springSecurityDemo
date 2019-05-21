@@ -15,8 +15,8 @@ import javax.validation.Payload;
  * @author zhailiang
  *
  */
-@Target({ElementType.METHOD, ElementType.FIELD})
-@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.FIELD}) //此自定义注解课标注在方法和字段上
+@Retention(RetentionPolicy.RUNTIME)//表示是运行时的一个注解
 @Constraint(validatedBy = MyConstraintValidator.class)
 public @interface MyConstraint {
 	

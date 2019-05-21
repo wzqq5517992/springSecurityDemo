@@ -122,6 +122,7 @@ public class UserControllerTest {
 	public void whenUpdateSuccess() throws Exception {
 		
 		Date date = new Date(LocalDateTime.now().plusYears(1).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+
 		System.out.println(date.getTime());
 		String content = "{\"id\":\"1\", \"username\":\"tom\",\"password\":null,\"birthday\":"+date.getTime()+"}";
 		String reuslt = mockMvc.perform(put("/user/1").contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -130,7 +131,7 @@ public class UserControllerTest {
 				.andExpect(jsonPath("$.id").value("1"))
 				.andReturn().getResponse().getContentAsString();
 		
-		System.out.println(reuslt);
+		System.out.println("qwe："+reuslt);
 	}
 	
 	@Test

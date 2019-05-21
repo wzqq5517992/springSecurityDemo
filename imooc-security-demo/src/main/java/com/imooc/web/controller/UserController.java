@@ -18,6 +18,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,7 +46,12 @@ public class UserController {
 	
 	@Autowired
 	private ProviderSignInUtils providerSignInUtils;
-	
+
+	/**
+	 * 用户注册及图片上传
+	 * @param user
+	 * @param request
+	 */
 	@PostMapping("/regist")
 	public void regist(User user, HttpServletRequest request) {
 		
@@ -59,6 +65,12 @@ public class UserController {
 		return user;
 	}
 
+	/**
+	 * 创建用户
+	 * @param user
+	 * @param bindingResult
+	 * @return
+	 */
 	@PostMapping
 	@ApiOperation(value = "创建用户")
 	public User create(@Valid @RequestBody User user,BindingResult bindingResult) {
@@ -76,18 +88,37 @@ public class UserController {
 		return user;
 	}
 
+	/**
+	 * 修改用户信息
+	 * @param user
+	 * @param errors
+	 * @return
+	 */
 	@PutMapping("/{id:\\d+}")
 	public User update(@Valid @RequestBody User user, BindingResult errors) {
+		if(errors.hasErrors()){
+			errors.getAllErrors().stream().forEach(
+					e->{
+						FieldError fieldError=(FieldError) e;
+						String menssage=fieldError.getField()+" "+e.getDefaultMessage();
+						System.out.println(menssage);
+					}
+			);
+		}
 
-		System.out.println(user.getId());
-		System.out.println(user.getUsername());
-		System.out.println(user.getPassword());
-		System.out.println(user.getBirthday());
+		System.out.println("wzq："+user.getId());
+		System.out.println("wzq："+user.getUsername());
+		System.out.println("wzq："+user.getPassword());
+		System.out.println("wzq："+user.getBirthday());
 
 		user.setId("1");
 		return user;
 	}
 
+	/**
+	 * 删除用户
+	 * @param id
+	 */
 	@DeleteMapping("/{id:\\d+}")
 	public void delete(@PathVariable String id) {
 		System.out.println(id);

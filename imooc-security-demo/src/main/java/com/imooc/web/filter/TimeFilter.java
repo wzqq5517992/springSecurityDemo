@@ -3,6 +3,8 @@
  */
 package com.imooc.web.filter;
 
+import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.util.Date;
 
@@ -29,6 +31,7 @@ public class TimeFilter implements Filter {
 	}
 
 	/* (non-Javadoc)
+	  过滤器可以拿到最原始的 ServletRequest和ServletResponse
 	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
 	@Override
@@ -36,6 +39,7 @@ public class TimeFilter implements Filter {
 			throws IOException, ServletException {
 		System.out.println("time filter start");
 		long start = new Date().getTime();
+		//调用后续的过滤处理
 		chain.doFilter(request, response);
 		System.out.println("time filter 耗时:"+ (new Date().getTime() - start));
 		System.out.println("time filter finish");

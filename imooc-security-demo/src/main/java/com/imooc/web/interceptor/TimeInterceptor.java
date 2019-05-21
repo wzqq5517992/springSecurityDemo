@@ -13,7 +13,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
+/**拦截器
  * @author zhailiang
  *
  */
@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class TimeInterceptor implements HandlerInterceptor {
 
 	/* (non-Javadoc)
+	控制器被调用前先执行此方法 拦截器的缺点就是无法获取到控制层方法的入参， 参数需要用切片去获取
 	 * @see org.springframework.web.servlet.HandlerInterceptor#preHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object)
 	 */
 	@Override
@@ -36,6 +37,7 @@ public class TimeInterceptor implements HandlerInterceptor {
 	}
 
 	/* (non-Javadoc)
+	 控制器成功调用后 会调用此方法
 	 * @see org.springframework.web.servlet.HandlerInterceptor#postHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
 	 */
 	@Override
@@ -48,6 +50,7 @@ public class TimeInterceptor implements HandlerInterceptor {
 	}
 
 	/* (non-Javadoc)
+	不管控制器是否调用成功，控制器结束后都会调用此方法
 	 * @see org.springframework.web.servlet.HandlerInterceptor#afterCompletion(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
 	 */
 	@Override
